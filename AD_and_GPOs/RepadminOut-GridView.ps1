@@ -1,0 +1,1 @@
+﻿repadmin /showrepl * /csv | ConvertFrom-Csv | Out-GridView

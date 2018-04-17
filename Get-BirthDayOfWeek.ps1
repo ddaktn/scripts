@@ -1,0 +1,1 @@
+﻿([DateTime](Read-Host Birthday?)).DayOfWeek
