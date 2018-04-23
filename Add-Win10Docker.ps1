@@ -22,10 +22,19 @@ function Install-DockerReqs{
 
         [Parameter(Mandatory=$true,
                    Position=2)]
-        [string]$adminPassword               
+        [string]$adminPassword,
+        
+        [Parameter(Mandatory=$false,
+                   Postion=3)]
+        [ValidateSet("Prod","ITG")]
+        [string]$environment = "Prod"               
     )
     BEGIN{            
-        $vCenter = 'omahcsm43.corp.mutualofomaha.com'
+        if($environment -eq "Prod"){
+            $vCenter = 'omahcsm43.corp.mutualofomaha.com'
+        } elseif($environment -eq "ITG"){
+            $vCenter = 'omahcsm81.corp.mutualofomaha.com'
+        }
         Get-Module  VMware.VimAutomation.Core -ListAvailable | Import-Module
         Connect-VIServer -Server $vCenter -User $adminAccount -Password $adminPassword
     }
