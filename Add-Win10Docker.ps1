@@ -25,7 +25,7 @@ function Install-DockerReqs{
         [string]$adminPassword,
         
         [Parameter(Mandatory=$false,
-                   Postion=3)]
+                   Position=3)]
         [ValidateSet("Prod","ITG")]
         [string]$environment = "Prod"               
     )
