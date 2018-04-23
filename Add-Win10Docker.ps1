@@ -58,7 +58,8 @@ function Install-DockerReqs{
                 "Invoking to $vmName"
                 Invoke-Command -ComputerName $vmName -ScriptBlock{
                     $using:vmName
-                    if(Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V){
+                    $state = Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V
+                    if($state.State -eq 'Enabled'){
                         "Hyper-V is already installed on $using:vmName."
                     } else {
                         TRY{
@@ -69,7 +70,7 @@ function Install-DockerReqs{
                             "INSTALLING STATUS: The Hyper-V feature is not installing. It was either already installed, or something went wrong. Check completion status."
                         }
                         FINALLY{
-                            if(Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V){
+                            if($state.State -eq 'Enabled'){
                                 "COMPLETION STATUS: The Hyper-V feature is successfully installed on $using:vmName. Now rebooting..."
                                 Restart-Computer
                             } else {
