@@ -23,13 +23,13 @@ function Install-DockerReqs{
         [Parameter(Mandatory=$true,
                    Position=2)]
         [string]$adminPassword,
-        
+
         [Parameter(Mandatory=$false,
                    Position=3)]
         [ValidateSet("Prod","ITG")]
-        [string]$environment = "Prod"               
+        [string]$environment = "Prod"
     )
-    BEGIN{            
+    BEGIN{
         if($environment -eq "Prod"){
             $vCenter = 'omahcsm43.corp.mutualofomaha.com'
         } elseif($environment -eq "ITG"){
@@ -38,21 +38,21 @@ function Install-DockerReqs{
         Get-Module  VMware.VimAutomation.Core -ListAvailable | Import-Module
         Connect-VIServer -Server $vCenter -User $adminAccount -Password $adminPassword
     }
-    PROCESS{            
+    PROCESS{
         #enable hardware virtualization
         $vm = Get-VM -Name $vmName
         Get-VM $vm | Stop-VM -Confirm:$false
         Start-Sleep -Seconds 30
-        
+
         $spec = New-Object VMware.Vim.VirtualMachineConfigSpec
         $spec.nestedHVEnabled = $true
         $vm.ExtensionData.ReconfigVM($spec)
         Start-Sleep -Seconds 10
-        
+
         Get-VM $vm | Start-VM
         Start-Sleep -Seconds 180
-        
-        #install/enable hyper-V        
+
+        #install/enable hyper-V
         WHILE($true){
             if(Test-Connection -ComputerName $vmName -Quiet) {
                 "Invoking to $vmName"
@@ -77,21 +77,21 @@ function Install-DockerReqs{
                                 "COMPLETION STATUS: The Hyper-V feature is NOT installed. Something did not work."
                             }
                         }
-                    }                    
+                    }
                 }
                 break;
             } else {
                 Start-Sleep -Seconds 10
             }
-        }        
-        Start-Sleep -Seconds 300                       
+        }
+        Start-Sleep -Seconds 300
     }
     END{
         Disconnect-VIServer -Server $vCenter -Force -Confirm:$false
     }
 }
 
-function Install-DockerBits{    
+function Install-DockerBits{
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory=$true,
@@ -108,8 +108,8 @@ function Install-DockerBits{
         [string]$containerType = "Linux"
     )
     BEGIN{}
-    PROCESS{           
-        #install docker        
+    PROCESS{
+        #install docker
         WHILE($true){
             if(Test-Connection -ComputerName $vmName -Quiet){
                 if($containerType = "Linux"){
@@ -123,7 +123,7 @@ function Install-DockerBits{
                             Start-Sleep -seconds 120
                         }
                         CATCH{
-                            "Docker did not install..."                            
+                            "Docker did not install..."
                         }
                         FINALLY{
                             if($installSuccess -eq 1){
@@ -156,11 +156,11 @@ function Install-DockerBits{
             $query = "Associators of {Win32_Group.Domain='$Computer',Name='$DockerGroup'} where Role=GroupComponent"
             if($groupCheck){
                 if(Get-CimInstance -Query $query -ComputerName $computer | ForEach-Object {$_.Name -eq $using:dockerUser}){
-                    "The user $using:dockerUser is already in the local $dockerGroup group."                    
+                    "The user $using:dockerUser is already in the local $dockerGroup group."
                 } else {
-                    TRY{                
+                    TRY{
                         ([ADSI]"WinNT://$computer/$dockerGroup,group").psbase.Invoke("Add",([ADSI]"WinNT://$domain/$using:dockerUser").path)
-                        "Added $using:dockerUser to the newly created local $dockerGroup group."                    
+                        "Added $using:dockerUser to the newly created local $dockerGroup group."
                     }
                     CATCH{
                         "The $dockerGroup local group DOES exist, but did NOT successfully add $using:dockerUser to it!!!"
@@ -168,8 +168,8 @@ function Install-DockerBits{
                 }
             } else {
                 "The docker group $dockerGroup was NOT created! Something went wrong with the install!!!"
-            }           
-        }               
+            }
+        }
     }
     END{}
 }
