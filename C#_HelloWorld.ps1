@@ -12,4 +12,4 @@ namespace Hello
 }
 "@
 
-[Hello.Program]::Main("World")
+[Hello.Program]::Main("John")
