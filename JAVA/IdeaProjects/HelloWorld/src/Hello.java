@@ -1,8 +1,14 @@
+import java.util.Scanner;
+
 public class Hello {
     public static void main(String[] args) {
-        String name = "World";
-        System.out.println("Hello "+name+"!");
-        int myFirstNumber = (10 + 5) + (2 * 10);
-        System.out.println(myFirstNumber);
+        //Scanner input = new Scanner(System.in);
+        //System.out.println("What is your name?");
+        //String name = input.next();
+        //System.out.println("Hello, "+name+"!");
+        Scanner console = new Scanner(System.in);
+        System.out.print("How much money do you have? ");
+        double money = console.nextDouble();
+        System.out.println(money);
     }
 }
