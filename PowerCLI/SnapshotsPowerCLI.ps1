@@ -10,7 +10,7 @@ Connect-VIServer omahcsm07.corp.mutualofomaha.com
 Write-Host "Enter server name that you snapshotted: " -NoNewline -ForegroundColor Yellow
 $snapShot = Read-Host
 #Take a snapshot of a server with a name (i made the name the same as the server for simplicity) and description (creation date)
-New-Snapshot -vm $snapShot -Name "$snapShot" -Description "Created by Doug Nelson $(get-date)"
+New-Snapshot -vm $snapShot -Name "$snapShot" -Memory:$true -Quiesce:$true -Description "Created by Doug Nelson $(get-date)"
 
 
 #Get all snapshots in the environment
