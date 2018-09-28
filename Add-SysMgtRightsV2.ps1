@@ -147,17 +147,29 @@ $Groups = 'Backup Operators','Power Users'
 Add-DomainUserToLocalGroup -DomainAccounts $DomainAccounts -Groups $Groups
 
 # call for SVC and P accounts
-$DomainAccounts = 'svcSysMgmt','SVCSMSRVMON','SVCSMSRVMONTWO','PNTB003','PTNG001'
+$DomainAccounts = 'svcSysMgmt','SVCSMSRVMON','SVCSMSRVMONTWO','PNTB003','PTNG001','svcctmagp','svcctmags'
 $Groups = 'APPBTCH','SysMgt'
 Add-DomainUserToLocalGroup -DomainAccounts $DomainAccounts -Groups $Groups
 
 # call for SysMgt local group
 $accountToAdd = "$env:computername\SysMgt"
-$rights = "SeTcbPrivilege","SeIncreaseQuotaPrivilege","SeInteractiveLogonRight","SeBatchLogonRight","SeServiceLogonRight","SeSystemProfilePrivilege","SeAssignPrimaryTokenPrivilege"
+#$rights = "SeTcbPrivilege","SeIncreaseQuotaPrivilege","SeInteractiveLogonRight","SeBatchLogonRight","SeServiceLogonRight","SeSystemProfilePrivilege","SeAssignPrimaryTokenPrivilege"
+$rights = "SeServiceLogonRight"
 Add-LocalUserRightAssignment -accountToAdd $accountToAdd -rights $rights
 
 # call for APPBTCH local group
 $accountToAdd = "$env:computername\APPBTCH"
 $rights = "SeServiceLogonRight"
 Add-LocalUserRightAssignment -accountToAdd $accountToAdd -rights $rights
+
+# call for SVCCTMAGP account
+$accountToAdd = "$env:USERDOMAIN\svcctmagp"
+$rights = "SeServiceLogonRight"
+Add-LocalUserRightAssignment -accountToAdd $accountToAdd -rights $rights
+
+# call for SVCCTMAGS account
+$accountToAdd = "$env:USERDOMAIN\svcctmags"
+$rights = "SeServiceLogonRight"
+Add-LocalUserRightAssignment -accountToAdd $accountToAdd -rights $rights
+
  
