@@ -21,12 +21,11 @@
             li {
                 text-align: left;
             }
-            header{
-                background-color: #000033;
-                color: #FFFFFF;
-	            font-family: Georgia, serif;
-            }
-            h1{
+            .ninjas{
+                font-size: 350%;
+                color: black;
+            }            
+            .heading{
                 color: white;
                 line-height: 350%;
                 padding-left: auto; 
@@ -49,11 +48,20 @@
                 align-items: center;
             }                      
         </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script> 
+            $(document).ready(function() {
+                $('header').hide().slideDown(2500);
+            }); 
+            $(document).ready(function() {
+                $('.ninjas').hide().slideDown(2500);
+            });          
+        </script>
     </head>
     <body>
-        <div>
-            <h1>GINGA NINJAS, the ULTIMATE weapons!</h1>  
-            <p>Despite what the mainstream media would have you believe... NINJAS ARE REAL!</p>          
+        <header><h1 class="heading">GINGA NINJAS, the ULTIMATE weapons!</h1></header>        
+        <div>                          
+            <h1 class="ninjas">NINJAS ARE REAL!!!!!!!!!!</h1>          
             <div class="pics">
                 <img src="images\ninja.gif">
                 <img src="images\ninja3.gif">
@@ -91,6 +99,6 @@
             </ul>          
             <img src="images/ginja_ninja_by_nintendoowned-d5rnzxt.png">            
             <p>CLICK HERE FOR MORE <a href="http://www.realultimatepower.net/index4.htm" target="_blank">NINJAS</a></p>
-        </div>
+        </div>        
     </body>
 </html>

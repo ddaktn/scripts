@@ -161,20 +161,61 @@ then
         # Doug Nelson -- 10/03/2018
         ###################################################################################################
         echo -e "\n\nDisabling the Puppet Agent post install.\n"
-        STOPCODE=1
-        while [ ${STOPCODE} -eq 1 ]
+        PUPPET_DISABLE=1
+        LOOP=0
+        while [ ${LOOP} -lt 3 ]
         do
             /opt/puppetlabs/bin/puppet agent -t ; RC=${?}
+            #wait
             if [ ${RC} -eq 0 ]
             then
-                echo -e "\n\nThe agent has successfully updated and will now be stopped and disabled.\n\n"
-                
+                echo -e "\n\nThe agent has successfully updated and will now be stopped and disabled.\n\n"                
                 systemctl disable puppet
                 systemctl stop puppet
-                STOPCODE=0
+                systemctl status consul ; CONSUL_CODE=${?}
+                if [ ${CONSUL_CODE} -eq 0 ]
+                then
+                    echo -e "\n\nPuppet successfully installed and updated the Consul agent and is now disabled.\n\n"
+                    LOOP=3
+                    PUPPET_DISABLE=0
+                else
+                    echo -e "\n\nPuppet was not able to be disabled. Will try again!!!!\n\n"
+                    ((LOOP++))
+                fi
             else
-                echo "\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                echo -e "\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                echo -e "There was an issue trying to update the puppet agent. Will try again!!!!"
+                echo -e "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n"
+                ((LOOP++))
+            fi
         done
+        
+        if [ ${PUPPET_DISABLE} -eq 0 ]
+        then
+            echo -e "\n\n===================================================="
+            echo -e "The Puppet agent successfully updated and is disabled."
+            echo -e "===================================================="
+        else
+            echo -e "\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            echo -e "Disabling the Puppet agent FAILED."
+            echo -e "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            echo -e "Please Investigate.\n"
+
+            echo -e "\nCopying ${LogFile} to ${Satellite}:/Cloud/troubleshoot"
+            scp -qo StrictHostKeyChecking=no -i /data/svcldadm/.ssh/id_dsa -i /data/svcldadm/.ssh/id_rsa ${LogFile} svcldadm@${Satellite}:/Cloud/troubleshoot/${Server}_${Script}.log; RC=${?}
+            if [ ${RC} -eq 0 ]
+            then
+                echo -e "Successful."
+            else
+                echo -e "FAILED."
+                echo -e "The copy of the ${LogFile} from ${Server} to ${Satellite}:/Cloud/troubleshoot failed. Good luck troubleshooting..." | mailx -s "Request ${Request} (${Server}):  Problem running /Cloud/scripts/Cloud_Puppet.sh-2.1 - INVESTIGATE" ${MailList}
+            fi
+
+            echo -e "Sending notification email to Cloud Administrators.\n\n"
+            echo -e "There was an error encountered disabling the Puppet bootstrap RPM on ${Server}.  Please investigate by reviewing the following log file on ${Satellite}: \n\n   /Cloud/troubleshoot/${Server}_${LogFile}" | mailx -s "Request ${Request} (${Server}):  Error Encountered in /Cloud/scripts/Cloud_Puppet.sh-2.1 on ${Server} - INVESTIGATE" ${MailList}
+            exit 87
+        fi 
+        ###END OF DOUG NELSON'S BLOCK###
 
       else
          echo -e "\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
