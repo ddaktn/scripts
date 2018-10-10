@@ -7,16 +7,15 @@ umask 022
 #       Created         9/12/2018
 #--------------------------------------------------------------#
 
-WORKERS=$(grep -i "worker" /Cloud/dockerManifests/Lab2_Docker_Environment_16.2 | awk -F: '{print $1}')
+WORKERS=$(grep -i "worker" /Cloud/dockerManifests/${1} | awk -F: '{print $1}')
 
 for WORKER in ${WORKERS}
 do
-
         USER="svcdockr"
-        MGR=$(grep -i -m 1 "manager" /Cloud/dockerManifests/Lab_Docker_Environment_16.3 | awk -F: '{print $1}')
-
-        ping -c -w2 ${MGR} >/dev/null 2>&1 ; MGR_PING=${?}
+        MGR=$(grep -i -m 1 "manager" /Cloud/dockerManifests/${1} | awk -F: '{print $1}')
+        
         ping -c -w2 ${WORKER} >/dev/null 2>&1 ; WORKER_PING=${?}
+        ping -c -w2 ${MGR} >/dev/null 2>&1 ; MGR_PING=${?}
 
         if [ ${WORKER_PING} -eq 0 && ${MGR_PING} -eq 0 ]
         then
@@ -46,5 +45,6 @@ do
                 fi
         else
                 echo "Some of the nodes in the swarm are not responding to PING! Check that all nodes are up!"
+        fi
 done
 exit
