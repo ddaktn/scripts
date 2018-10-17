@@ -163,33 +163,30 @@ then
         echo -e "\n\nDisabling the Puppet Agent post install.\n"
         PUPPET_DISABLE=1
         LOOP=0
-        while [ ${LOOP} -lt 3 ]
-        do
-            /opt/puppetlabs/bin/puppet agent -t ; RC=${?}
-            #wait
-            if [ ${RC} -eq 0 ]
+        systemctl disable puppet
+        echo -e "The Puppet agent has been disabled.\n\n"
+        systemctl stop puppet
+        echo -e "The Puppet agent has been stopped.\n\n"
+        /opt/puppetlabs/bin/puppet agent -t ; PUPPET_UPDATE=${?}
+        if [ ${PUPPET_UPDATE} -eq 0 ]
+        then
+            echo -e "\n\nThe agent has successfully updated.\n\n"                 
+            systemctl status consul ; CONSUL_CODE=${?}
+            if [ ${CONSUL_CODE} -eq 0 ]
             then
-                echo -e "\n\nThe agent has successfully updated and will now be stopped and disabled.\n\n"                
-                systemctl disable puppet
-                systemctl stop puppet
-                systemctl status consul ; CONSUL_CODE=${?}
-                if [ ${CONSUL_CODE} -eq 0 ]
-                then
-                    echo -e "\n\nPuppet successfully installed and updated the Consul agent and is now disabled.\n\n"
-                    LOOP=3
-                    PUPPET_DISABLE=0
-                else
-                    echo -e "\n\nPuppet was not able to be disabled. Will try again!!!!\n\n"
-                    ((LOOP++))
-                fi
+                echo -e "\n\nPuppet successfully installed and updated the Consul agent and is now disabled.\n\n"                    
+                PUPPET_DISABLE=0
             else
                 echo -e "\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                echo -e "There was an issue trying to update the puppet agent. Will try again!!!!"
+                echo -e "The puppet agent SAYS it successfully updated, but CONSUL isn't running!!!!"
                 echo -e "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n"
-                ((LOOP++))
             fi
-        done
-        
+        else
+            echo -e "\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            echo -e "The puppet agent did NOT successfully update!!!!"
+            echo -e "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n"                
+        fi
+                
         if [ ${PUPPET_DISABLE} -eq 0 ]
         then
             echo -e "\n\n===================================================="
@@ -197,7 +194,7 @@ then
             echo -e "===================================================="
         else
             echo -e "\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-            echo -e "Disabling the Puppet agent FAILED."
+            echo -e "Disabling, stopping, and updating the Puppet agent FAILED."
             echo -e "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
             echo -e "Please Investigate.\n"
 
