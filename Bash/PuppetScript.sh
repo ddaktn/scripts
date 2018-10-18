@@ -160,9 +160,9 @@ then
         # Block added to disable the Puppet client after successfully installing and pulling a config
         # Doug Nelson -- 10/03/2018
         ###################################################################################################
+        sleep 300
         echo -e "\n\nDisabling the Puppet Agent post install.\n"
         PUPPET_DISABLE=1
-        LOOP=0
         systemctl disable puppet
         echo -e "The Puppet agent has been disabled.\n\n"
         systemctl stop puppet
@@ -209,7 +209,7 @@ then
             fi
 
             echo -e "Sending notification email to Cloud Administrators.\n\n"
-            echo -e "There was an error encountered disabling the Puppet bootstrap RPM on ${Server}.  Please investigate by reviewing the following log file on ${Satellite}: \n\n   /Cloud/troubleshoot/${Server}_${LogFile}" | mailx -s "Request ${Request} (${Server}):  Error Encountered in /Cloud/scripts/Cloud_Puppet.sh-2.1 on ${Server} - INVESTIGATE" ${MailList}
+            echo -e "There was an error encountered stopping and disabling the Puppet agent on ${Server}.  Please investigate by reviewing the following log file on ${Satellite}: \n\n   /Cloud/troubleshoot/${Server}_${LogFile}" | mailx -s "Request ${Request} (${Server}):  Error Encountered in /Cloud/scripts/Cloud_Puppet.sh-2.1 on ${Server} - INVESTIGATE" ${MailList}
             exit 87
         fi 
         ###END OF DOUG NELSON'S BLOCK###
