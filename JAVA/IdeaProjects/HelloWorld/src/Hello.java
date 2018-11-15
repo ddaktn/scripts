@@ -9,6 +9,6 @@ public class Hello {
         Scanner console = new Scanner(System.in);
         System.out.print("How much money do you have? ");
         double money = console.nextDouble();
-        System.out.println(money);
+        System.out.printf("%.2f", money);
     }
 }
