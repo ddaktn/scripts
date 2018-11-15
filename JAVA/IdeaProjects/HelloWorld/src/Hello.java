@@ -9,6 +9,7 @@ public class Hello {
         Scanner console = new Scanner(System.in);
         System.out.print("How much money do you have? ");
         double money = console.nextDouble();
-        System.out.printf("%.2f", money);
+        String text = "You have";
+        System.out.printf("%s $%.2f.", text,money);
     }
 }
