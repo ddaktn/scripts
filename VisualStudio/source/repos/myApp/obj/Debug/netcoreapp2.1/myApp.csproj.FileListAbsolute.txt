@@ -1,0 +1,11 @@
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\bin\Debug\netcoreapp2.1\myApp.deps.json
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\bin\Debug\netcoreapp2.1\myApp.runtimeconfig.json
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\bin\Debug\netcoreapp2.1\myApp.runtimeconfig.dev.json
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\bin\Debug\netcoreapp2.1\myApp.dll
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\bin\Debug\netcoreapp2.1\myApp.pdb
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\obj\Debug\netcoreapp2.1\myApp.csprojAssemblyReference.cache
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\obj\Debug\netcoreapp2.1\myApp.csproj.CoreCompileInputs.cache
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\obj\Debug\netcoreapp2.1\myApp.AssemblyInfoInputs.cache
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\obj\Debug\netcoreapp2.1\myApp.AssemblyInfo.cs
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\obj\Debug\netcoreapp2.1\myApp.dll
+C:\users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\myApp\obj\Debug\netcoreapp2.1\myApp.pdb
