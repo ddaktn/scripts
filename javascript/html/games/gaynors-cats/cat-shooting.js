@@ -50,7 +50,7 @@ var player = {},
     player_width = 90,
 	player_height = 95,
 	player_img = new Image();
-	player_img.src = 'images/gaynor.png';
+	player_img.src = 'images/gaynor.PNG';
 
 // CREATE PLAYER
 player = {
