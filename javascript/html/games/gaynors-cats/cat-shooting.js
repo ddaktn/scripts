@@ -268,7 +268,7 @@ function animate(currentTime){
 
     if(player.power <= 0){
         cancelAnimationFrame(animation);
-        alert("Your Score:" + score);
+        alert("Great job! Gaynor thanks you for your service! Your score was: " + score + "\n\nAnd remember, friends don't let friends take stray cats home!");
     }
 	
 }
