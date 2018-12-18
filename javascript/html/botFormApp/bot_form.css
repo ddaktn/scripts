@@ -1,0 +1,40 @@
+body{
+    background-color: #FFFFFF;
+    color: #666666;
+    font-family: Verdana, Arial, sans-serif;
+    align-content: center;
+    background-image: url(images/form.gif);
+    background-repeat: repeat;
+}
+
+h1{
+    line-height: 200%;    
+    margin-bottom: 0;
+    padding-left: 20px;    
+    font-family: Impact, sans-serif;
+    color: #FFD700;
+    text-shadow: 3px 3px 3px #000000;
+    text-align: center;
+    font-size: 50px;   
+}
+
+header { 
+	background-color: #0078d7;
+    color: #FFFFFF;
+    font-family: Georgia, serif;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+iframe {
+    background-color: #FFFFFF;
+    width: 500px; 
+    min-height: 500px;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;  
+}
