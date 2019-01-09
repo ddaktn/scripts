@@ -1,20 +1,28 @@
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public class Problem25 {
 
     public static void main(String[] args){
+        fibonacciSequence();
+    }
+
+    public static void fibonacciSequence() {
         //1000-digit Fibonacci number
-        int[] intArr = new int[12];
-        intArr[0] = 1;
-        intArr[1] = 1;
-        System.out.println(intArr[0]);
-        System.out.println(intArr[1]);
-        for(int i = 2; i < intArr.length; i++){
-            intArr = Arrays.copyOf(intArr, intArr.length + 1);
-            intArr[i] = intArr[i - 1] + intArr[i -2];
-            System.out.println(intArr[i]);
-            int length = String.valueOf(intArr[i]).length();
-            if(length / 1000 == 1) {
+        var bigIntArr = new BigInteger[12];
+        bigIntArr[0] = BigInteger.ONE;
+        bigIntArr[1] = BigInteger.ONE;
+        System.out.println(bigIntArr[0]);
+        System.out.println(bigIntArr[1]);
+        for(var i = 2; i < bigIntArr.length; i++){
+            bigIntArr = Arrays.copyOf(bigIntArr, bigIntArr.length + 1);
+            bigIntArr[i] = bigIntArr[i - 1].add(bigIntArr[i - 2]);
+            System.out.println(bigIntArr[i]);
+            System.out.println(i);
+            var length = String.valueOf(bigIntArr[i]).length();
+            if(length >= 1000) {
+                var answer = i + 1; //index starts from zero
+                System.out.printf("The answer is: %d", answer); 
                 break;
             }
         }
