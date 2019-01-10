@@ -8,12 +8,12 @@ public class Problem25 {
     }
 
     public static void fibonacciSequence() {
+
         //1000-digit Fibonacci number
         var bigIntArr = new BigInteger[12];
         bigIntArr[0] = BigInteger.ONE;
         bigIntArr[1] = BigInteger.ONE;
-        System.out.println(bigIntArr[0]);
-        System.out.println(bigIntArr[1]);
+
         for(var i = 2; i < bigIntArr.length; i++){
             bigIntArr = Arrays.copyOf(bigIntArr, bigIntArr.length + 1);
             bigIntArr[i] = bigIntArr[i - 1].add(bigIntArr[i - 2]);
