@@ -9,8 +9,6 @@ public class Problem20 {
         Scanner sc = new Scanner(System.in);
         Long count = sc.nextLong();
         BigInteger num = BigInteger.valueOf(count);
-        System.out.println(count);
-        System.out.println(num);
         BigInteger one = new BigInteger("1");
         BigInteger two = new BigInteger("2");
         BigInteger result = new BigInteger("1");
