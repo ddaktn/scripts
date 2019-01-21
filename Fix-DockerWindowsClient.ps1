@@ -37,7 +37,7 @@ FUNCTION Reset-DockerWindowsClient {
                         }
                         CATCH {
                             Write-Host "ERROR: The $service service was NOT successfully restarted."
-                        }
+                        }                        
                     } else {
                         Write-Host "ERROR: The $service is not installed. Not all of the appropriate components are loaded for Docker."
                     }
