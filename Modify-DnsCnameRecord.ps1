@@ -118,26 +118,28 @@ FUNCTION Undo-DnsCnameRecord {
                 $oldLbName = $lbName
                 $prefix = ""
             } else {
-                $itgLbName = $catLbName = $lbName
+                $oldLbName = $lbName
                 $prefix = ""
             }
             $aliasRecords = Get-DnsServerResourceRecord -ComputerName $dc -ZoneName $zone -RRType CName |
                     Where-Object {($_.RecordData.HostNameAlias -eq "$lbName$prefix-itg.$zone.") -or ($_.RecordData.HostNameAlias -eq "$lbName$prefix-cat.$zone.")}
             foreach($record in $aliasRecords) {
-                $old = $record
-                $new = $record.Clone()
-                $new.RecordData.HostNameAlias = "$oldLbName.$zone."               
-                TRY {
-                    Set-DnsServerResourceRecord -ComputerName $dc -ZoneName $zone -NewInputObject $new -OldInputObject $old
-                    $info = "{0},{1},{2},Success" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias
-                    $info 
-                    Add-Content -Value $info -Path $outFile
-                }
-                CATCH {
-                    $info = "{0},{1},{2},ERROR" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias
-                    $info 
-                    Add-Content -Value $info -Path $outFile
-                }
+                if(($record.HostName).EndsWith("-itg") -or ($record.HostName).EndsWith("-cat")) {
+                    $old = $record
+                    $new = $record.Clone()
+                    $new.RecordData.HostNameAlias = "$oldLbName.$zone."               
+                    TRY {
+                        Set-DnsServerResourceRecord -ComputerName $dc -ZoneName $zone -NewInputObject $new -OldInputObject $old
+                        $info = "{0},{1},{2},Success" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias
+                        $info 
+                        Add-Content -Value $info -Path $outFile
+                    }
+                    CATCH {
+                        $info = "{0},{1},{2},ERROR" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias
+                        $info 
+                        Add-Content -Value $info -Path $outFile
+                    }
+                }   
             }
             Copy-Item -Path $outFile -Destination "\\omahcts137\d$\DnsAliasModifyScriptOutput"
         }
