@@ -7,23 +7,17 @@
 
         [Parameter(Mandatory=$false,
                     Position=1)]
-        [string]$domainController = "omahcis04",
-
-        [Parameter(Mandatory=$false,
-                    Position=2)]
-        [string]$dnsZone = "mutualofomaha.com",
-
-        [Parameter(Mandatory=$false,
-                    Position=3)]
         [switch]$revert = $false
     )
 
 FUNCTION Set-DnsCnameRecord {
-    BEGIN{
+    BEGIN {
         [string]$file = "DockerCnameRecord-SET-$loadBalancer-" + (Get-Date -Format yyyy-MM-ddTHH-mm-ss-ff) + ".csv"
+        [string]$domainController = "omahcis04"
+        [string]$dnsZone = "mutualofomaha.com"
     }
-    PROCESS{
-        Invoke-Command -ComputerName $dc -ScriptBlock {
+    PROCESS {
+        Invoke-Command -ComputerName $domainController -ScriptBlock {
             PARAM(
                 $outFile = "C:\TEMP\$using:file",
                 $header = "HostName,OldAlias,NewAlias,ChangeStatus",
@@ -34,7 +28,6 @@ FUNCTION Set-DnsCnameRecord {
                 $catLbName,
                 $aliasRecords
             )
-            Clear-Content $outFile -ErrorAction SilentlyContinue
             Add-Content -Value $header -Path $outFile
             if($lbName -eq "docker-app") {
                 $itgLbName = "$lbName-prod-itg"
@@ -49,30 +42,36 @@ FUNCTION Set-DnsCnameRecord {
                 $itgLbName = "$lbName-itg"
                 $catLbName = "$lbName-cat"
             }
-            $aliasRecords = Get-DnsServerResourceRecord -ComputerName $dc -ZoneName $zone -RRType CName | Where-Object {$_.RecordData.HostNameAlias -eq "$lbName."}            
+            $aliasRecords = Get-DnsServerResourceRecord -ComputerName $dc -ZoneName $zone -RRType CName | Where-Object {$_.RecordData.HostNameAlias -eq "$lbName.$zone."}            
             foreach($record in $aliasRecords) {
                 if(($record.HostName).EndsWith("-itg")) {
-                    $new = $old = $record
-                    $new.RecordData.HostNameAlias = "$itgLbName."
+                    $old = $record
+                    $new = $record.Clone() 
+                    $new.RecordData.HostNameAlias = "$itgLbName.$zone."
                     TRY {
                         Set-DnsServerResourceRecord -ComputerName $dc -ZoneName $zone -NewInputObject $new -OldInputObject $old
-                        $info = $record.HostName + "," + $old.RecordData.HostNameAlias + "," + $new.RecordData.HostNameAlias + ",Success" 
+                        $info = "{0},{1},{2},Success" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias
+                        $info 
                         Add-Content -Value $info -Path $outFile
                     }
                     CATCH {
-                        $info = $record.HostName + "," + $old.RecordData.HostNameAlias + "," + $new.RecordData.HostNameAlias + ",ERROR" 
+                        $info = "{0},{1},{2},ERROR" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias 
+                        $info
                         Add-Content -Value $info -Path $outFile
                     }                   
-                } elseif(($record.HostName).EndsWith("-cat")) {
-                    $new = $old = $record
-                    $new.RecordData.HostNameAlias = "$catLbName."
+                } elseif(($record.HostName).EndsWith("-cat")) { 
+                    $old = $record
+                    $new = $record.Clone()
+                    $new.RecordData.HostNameAlias = "$catLbName.$zone."    
                     TRY {
                         Set-DnsServerResourceRecord -ComputerName $dc -ZoneName $zone -NewInputObject $new -OldInputObject $old
-                        $info = $record.HostName + "," + $old.RecordData.HostNameAlias + "," + $new.RecordData.HostNameAlias + ",Success" 
+                        $info = "{0},{1},{2},Success" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias
+                        $info
                         Add-Content -Value $info -Path $outFile
                     }
                     CATCH {
-                        $info = $record.HostName + "," + $old.RecordData.HostNameAlias + "," + $new.RecordData.HostNameAlias + ",ERROR" 
+                        $info = "{0},{1},{2},ERROR" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias
+                        $info 
                         Add-Content -Value $info -Path $outFile
                     }
                 }
@@ -80,22 +79,24 @@ FUNCTION Set-DnsCnameRecord {
             Copy-Item -Path $outFile -Destination "\\omahcts137\d$\DnsAliasModifyScriptOutput"            
         }
     }
-    END{
+    END {
         $path = "D:\DnsAliasModifyScriptOutput\$file"        
         if(Test-Path $path) {
             Write-Host "The output file $file was successfully moved to the 'D:\DnsAliasModifyScriptOutput' folder on OMAHCTS137."
         } else {
-            Write-Host "The output file was not successfully moved to OMAHCTS137. It should still be in the TEMP folder on OMAHCIS04."
+            Write-Host "The output file was not successfully moved to OMAHCTS137. It should still be in the TEMP folder on $domainController."
         }
     }
 }
 
 FUNCTION Undo-DnsCnameRecord {
-    BEGIN{
+    BEGIN {
         [string]$file = "DockerCnameRecord-REVERT-$loadBalancer-" + (Get-Date -Format yyyy-MM-ddTHH-mm-ss-ff) + ".csv"
+        [string]$domainController = "omahcis04"
+        [string]$dnsZone = "mutualofomaha.com"
     }
-    PROCESS{
-        Invoke-Command -ComputerName $dc -ScriptBlock {
+    PROCESS {
+        Invoke-Command -ComputerName $domainController -ScriptBlock {
             PARAM(
                 $outFile = "C:\TEMP\$using:file",
                 $header = "HostName,OldAlias,NewAlias,ChangeStatus",
@@ -106,7 +107,6 @@ FUNCTION Undo-DnsCnameRecord {
                 $catLbName,
                 $aliasRecords
             )
-            Clear-Content $outFile -ErrorAction SilentlyContinue
             Add-Content -Value $header -Path $outFile
             if($lbName -eq "docker-app") {
                 $oldLbName = $lbName
@@ -122,29 +122,32 @@ FUNCTION Undo-DnsCnameRecord {
                 $prefix = ""
             }
             $aliasRecords = Get-DnsServerResourceRecord -ComputerName $dc -ZoneName $zone -RRType CName |
-                    Where-Object {($_.RecordData.HostNameAlias -eq "$lbName$prefix-itg.") -or ($_.RecordData.HostNameAlias -eq "$lbName$prefix-cat.")}
+                    Where-Object {($_.RecordData.HostNameAlias -eq "$lbName$prefix-itg.$zone.") -or ($_.RecordData.HostNameAlias -eq "$lbName$prefix-cat.$zone.")}
             foreach($record in $aliasRecords) {
-                $new = $old = $record
-                $new.RecordData.HostNameAlias = "$oldLbName."
+                $old = $record
+                $new = $record.Clone()
+                $new.RecordData.HostNameAlias = "$oldLbName.$zone."               
                 TRY {
                     Set-DnsServerResourceRecord -ComputerName $dc -ZoneName $zone -NewInputObject $new -OldInputObject $old
-                    $info = $record.HostName + "," + $old.RecordData.HostNameAlias + "," + $new.RecordData.HostNameAlias + ",Success" 
+                    $info = "{0},{1},{2},Success" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias
+                    $info 
                     Add-Content -Value $info -Path $outFile
                 }
                 CATCH {
-                    $info = $record.HostName + "," + $old.RecordData.HostNameAlias + "," + $new.RecordData.HostNameAlias + ",ERROR" 
+                    $info = "{0},{1},{2},ERROR" -f $record.HostName,$old.RecordData.HostNameAlias,$new.RecordData.HostNameAlias
+                    $info 
                     Add-Content -Value $info -Path $outFile
                 }
             }
             Copy-Item -Path $outFile -Destination "\\omahcts137\d$\DnsAliasModifyScriptOutput"
         }
     }
-    END{
+    END {
         $path = "D:\DnsAliasModifyScriptOutput\$file"        
         if(Test-Path $path) {
             Write-Host "The output file $file was successfully moved to the 'D:\DnsAliasModifyScriptOutput' folder on OMAHCTS137."
         } else {
-            Write-Host "The output file was not successfully moved to OMAHCTS137. It should still be in the TEMP folder on OMAHCIS04."
+            Write-Host "The output file was not successfully moved to OMAHCTS137. It should still be in the TEMP folder on $domainController."
         }
     }
 }
