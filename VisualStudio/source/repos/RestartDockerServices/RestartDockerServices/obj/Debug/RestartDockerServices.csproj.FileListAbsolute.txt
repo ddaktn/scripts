@@ -1,0 +1,7 @@
+C:\Users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\RestartDockerServices\RestartDockerServices\bin\Debug\RestartDockerServices.exe.config
+C:\Users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\RestartDockerServices\RestartDockerServices\bin\Debug\RestartDockerServices.exe
+C:\Users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\RestartDockerServices\RestartDockerServices\bin\Debug\RestartDockerServices.pdb
+C:\Users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\RestartDockerServices\RestartDockerServices\obj\Debug\RestartDockerServices.csprojAssemblyReference.cache
+C:\Users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\RestartDockerServices\RestartDockerServices\obj\Debug\RestartDockerServices.csproj.CoreCompileInputs.cache
+C:\Users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\RestartDockerServices\RestartDockerServices\obj\Debug\RestartDockerServices.exe
+C:\Users\mss92473\Documents\PSScripts\scripts\VisualStudio\source\repos\RestartDockerServices\RestartDockerServices\obj\Debug\RestartDockerServices.pdb
