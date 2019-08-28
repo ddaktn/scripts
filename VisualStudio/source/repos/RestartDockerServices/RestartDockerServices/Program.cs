@@ -12,7 +12,7 @@ namespace RestartDockerServices
         static void Main(string[] args)
         {
             Console.WriteLine("\n\nRestarting the Docker and Hyper-V services\n\n");
-            string[] services = { "vmms", "vmcompute", "com.docker.service" };
+            string[] services = { "winmgmt", "vmcompute", "com.docker.service", "vmms" };
             foreach(string service in services)
             {
                 try
@@ -39,7 +39,7 @@ namespace RestartDockerServices
                 try
                 {
                     Console.WriteLine("Stopping the {0} service...", serviceName);
-                    service.Stop();
+                    //service.Stop();
                     System.Threading.Thread.Sleep(2500);
                     if (service.Status != ServiceControllerStatus.Stopped)
                     {
