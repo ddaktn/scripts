@@ -5,10 +5,10 @@
 $path = "UNC path"
 
 if (Test-Path $path) {
-Write-Host "Path exists"
+    Write-Host "Path exists"
 }
-Else {
-Write-Host "Path does NOT exist"
+else {
+    Write-Host "Path does NOT exist"
 }
 
 
@@ -18,7 +18,7 @@ Write-Host "Path does NOT exist"
 $path = "UNC path"
 
 if (-not (Test-Path $path)) {
-Write-Host "Path does NOT exist"
+    Write-Host "Path does NOT exist"
 }
 
 # Same logic with alternate -not (!) logical operator #
@@ -26,5 +26,5 @@ Write-Host "Path does NOT exist"
 $path = "UNC path"
 
 if (!(Test-Path $path)) {
-Write-Host "Path does NOT exist"
+    Write-Host "Path does NOT exist"
 }
