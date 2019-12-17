@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=https://blogs.technet.microsoft.com/heyscriptingguy/2012/05/25/getting-directory-sizes-in-powershell/
+[DOC#212]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=1842399649
+ORIGURL=https://www.facebook.com/v2.8/plugins/share_button.php?app_id=&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2Fp0HGCYXNu7N.js%3Fversion%3D42%23cb%3Df184808c74b06cb%26domain%3Dblogs.technet.microsoft.com%26origin%3Dhttps%253A%252F%252Fblogs.technet.microsoft.com%252Ff2e2f122ac63a98%26relation%3Dparent.parent&container_width=75&href=https%3A%2F%2Fblogs.technet.microsoft.com%2Fheyscriptingguy%2F2012%2F05%2F25%2Fgetting-directory-sizes-in-powershell%2F&layout=button_count&locale=en_GB&mobile_iframe=true&sdk=joey&size=large
+[DOC_fb_xdm_frame_https]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=18446744072028735901
+ORIGURL=https://staticxx.facebook.com/connect/xd_arbiter/r/p0HGCYXNu7N.js?version=42#channel=f2e2f122ac63a98&origin=https%3A%2F%2Fblogs.technet.microsoft.com
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://blogs.technet.microsoft.com/heyscriptingguy/2012/05/25/getting-directory-sizes-in-powershell/
+IDList=
+IconFile=https://blogs.technet.microsoft.com/heyscriptingguy/wp-content/themes/microsoft-technet/images/favicon-technet.png
+IconIndex=1

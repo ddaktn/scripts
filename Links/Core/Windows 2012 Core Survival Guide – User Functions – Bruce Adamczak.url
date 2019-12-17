@@ -1,0 +1,9 @@
+[DEFAULT]
+BASEURL=https://blogs.technet.microsoft.com/bruce_adamczak/2013/03/10/windows-2012-core-survival-guide-user-functions/
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://blogs.technet.microsoft.com/bruce_adamczak/2013/03/10/windows-2012-core-survival-guide-user-functions/
+IDList=
+IconFile=https://blogs.technet.microsoft.com/bruce_adamczak/wp-content/themes/microsoft-technet/images/favicon-technet.png
+IconIndex=1

@@ -1,0 +1,12 @@
+[DEFAULT]
+BASEURL=https://azure.microsoft.com/en-us/pricing/details/app-service/plans/
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+Prop17=31,https://azurecomcdn.azureedge.net/cvt-1f84faa0216a9467ce51e0b7f22b03316ee803c166369b2f0ab3436c6cd61d37/images/icon/live-tile/azure-150x150.png
+Prop16=19,2
+Prop18=31,#00abec
+[InternetShortcut]
+URL=https://azure.microsoft.com/en-us/pricing/details/app-service/plans/
+IDList=
+IconFile=https://azurecomcdn.azureedge.net/cvt-90cdaf487716184e4034000935c605d1633926d348116d198f355a98b8c6cd21/images/icon/favicon.ico
+IconIndex=1

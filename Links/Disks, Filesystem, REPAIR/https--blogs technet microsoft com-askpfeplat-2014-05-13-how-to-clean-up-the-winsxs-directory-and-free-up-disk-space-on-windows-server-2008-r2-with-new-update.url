@@ -1,0 +1,7 @@
+[DEFAULT]
+BASEURL=https://blogs.technet.microsoft.com/askpfeplat/2014/05/13/how-to-clean-up-the-winsxs-directory-and-free-up-disk-space-on-windows-server-2008-r2-with-new-update/
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://blogs.technet.microsoft.com/askpfeplat/2014/05/13/how-to-clean-up-the-winsxs-directory-and-free-up-disk-space-on-windows-server-2008-r2-with-new-update/
+IDList=

@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=https://blogs.technet.microsoft.com/heyscriptingguy/2014/10/02/use-powershell-to-create-local-groups/
+[DOC#210]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=18446744072686939408
+ORIGURL=https://www.facebook.com/v2.8/plugins/share_button.php?app_id=&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FhsBwMj6iLmk.js%3Fversion%3D42%23cb%3Df30bfd940a2534e%26domain%3Dblogs.technet.microsoft.com%26origin%3Dhttps%253A%252F%252Fblogs.technet.microsoft.com%252Ff7471c3ea207c6%26relation%3Dparent.parent&container_width=75&href=https%3A%2F%2Fblogs.technet.microsoft.com%2Fheyscriptingguy%2F2014%2F10%2F02%2Fuse-powershell-to-create-local-groups%2F&layout=button_count&locale=en_GB&mobile_iframe=true&sdk=joey&size=large
+[DOC_fb_xdm_frame_https]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=18446744073056038155
+ORIGURL=https://staticxx.facebook.com/connect/xd_arbiter/r/hsBwMj6iLmk.js?version=42#channel=f7471c3ea207c6&origin=https%3A%2F%2Fblogs.technet.microsoft.com
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://blogs.technet.microsoft.com/heyscriptingguy/2014/10/02/use-powershell-to-create-local-groups/
+IDList=
+IconFile=https://blogs.technet.microsoft.com/heyscriptingguy/wp-content/themes/microsoft-technet/images/favicon-technet.png
+IconIndex=1

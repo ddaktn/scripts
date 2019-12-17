@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=https://blogs.msdn.microsoft.com/powershell/2012/08/24/introduction-to-cim-cmdlets/
+[DOC#281]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=1056847233
+ORIGURL=https://www.facebook.com/v2.8/plugins/share_button.php?app_id=&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F0sTQzbapM8j.js%3Fversion%3D42%23cb%3Df1c1098be8ec25d%26domain%3Dblogs.msdn.microsoft.com%26origin%3Dhttps%253A%252F%252Fblogs.msdn.microsoft.com%252Ff34d73d15c469c4%26relation%3Dparent.parent&container_width=75&href=https%3A%2F%2Fblogs.msdn.microsoft.com%2Fpowershell%2F2012%2F08%2F24%2Fintroduction-to-cim-cmdlets%2F&layout=button_count&locale=en_GB&mobile_iframe=true&sdk=joey&size=large
+[DOC_fb_xdm_frame_https]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=18446744072216262018
+ORIGURL=https://staticxx.facebook.com/connect/xd_arbiter/r/0sTQzbapM8j.js?version=42#channel=f34d73d15c469c4&origin=https%3A%2F%2Fblogs.msdn.microsoft.com
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://blogs.msdn.microsoft.com/powershell/2012/08/24/introduction-to-cim-cmdlets/
+IDList=
+IconFile=https://blogs.msdn.microsoft.com/powershell/wp-content/themes/cloud-platform/images/favicon-msdn.png
+IconIndex=1

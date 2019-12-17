@@ -1,0 +1,7 @@
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+IDList=
+URL=https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/howto-embedded-servlet-containers.html#howto-use-tomcat-behind-a-proxy-server
+IconFile=https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/howto-embedded-servlet-containers.html#howto-use-tomcat-behind-a-proxy-server
+IconIndex=1

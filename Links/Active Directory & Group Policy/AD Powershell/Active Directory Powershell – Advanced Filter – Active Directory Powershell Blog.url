@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=https://blogs.msdn.microsoft.com/adpowershell/2009/04/03/active-directory-powershell-advanced-filter/
+[DOC#199]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=1895706492
+ORIGURL=https://www.facebook.com/v2.8/plugins/share_button.php?app_id=&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F0sTQzbapM8j.js%3Fversion%3D42%23cb%3Df574614ded8b41%26domain%3Dblogs.msdn.microsoft.com%26origin%3Dhttps%253A%252F%252Fblogs.msdn.microsoft.com%252Ff644f79bc9916%26relation%3Dparent.parent&container_width=75&href=https%3A%2F%2Fblogs.msdn.microsoft.com%2Fadpowershell%2F2009%2F04%2F03%2Factive-directory-powershell-advanced-filter%2F&layout=button_count&locale=en_GB&mobile_iframe=true&sdk=joey&size=large
+[DOC_fb_xdm_frame_https]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=18446744071679389561
+ORIGURL=https://staticxx.facebook.com/connect/xd_arbiter/r/0sTQzbapM8j.js?version=42#channel=f644f79bc9916&origin=https%3A%2F%2Fblogs.msdn.microsoft.com
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://blogs.msdn.microsoft.com/adpowershell/2009/04/03/active-directory-powershell-advanced-filter/
+IDList=
+IconFile=https://blogs.msdn.microsoft.com/adpowershell/wp-content/themes/microsoft-msdn/images/favicon-msdn.png
+IconIndex=1

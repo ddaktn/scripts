@@ -1,0 +1,9 @@
+[DEFAULT]
+BASEURL=https://docs.microsoft.com/en-us/azure/billing/billing-add-change-azure-subscription-administrator
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://docs.microsoft.com/en-us/azure/billing/billing-add-change-azure-subscription-administrator
+IDList=
+IconFile=https://docs.microsoft.com/favicon.ico
+IconIndex=1

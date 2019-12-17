@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=https://blogs.msdn.microsoft.com/powershell/2013/08/19/cim-cmdlets-some-tips-tricks/
+[DOC#281]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=889074019
+ORIGURL=https://www.facebook.com/v2.8/plugins/share_button.php?app_id=&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F0sTQzbapM8j.js%3Fversion%3D42%23cb%3Df3a9b6d92ccb558%26domain%3Dblogs.msdn.microsoft.com%26origin%3Dhttps%253A%252F%252Fblogs.msdn.microsoft.com%252Ff3bf92630c71a94%26relation%3Dparent.parent&container_width=75&href=https%3A%2F%2Fblogs.msdn.microsoft.com%2Fpowershell%2F2013%2F08%2F19%2Fcim-cmdlets-some-tips-tricks%2F&layout=button_count&locale=en_GB&mobile_iframe=true&sdk=joey&size=large
+[DOC_fb_xdm_frame_https]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=18446744071847162208
+ORIGURL=https://staticxx.facebook.com/connect/xd_arbiter/r/0sTQzbapM8j.js?version=42#channel=f3bf92630c71a94&origin=https%3A%2F%2Fblogs.msdn.microsoft.com
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://blogs.msdn.microsoft.com/powershell/2013/08/19/cim-cmdlets-some-tips-tricks/
+IDList=
+IconFile=https://blogs.msdn.microsoft.com/powershell/wp-content/themes/cloud-platform/images/favicon-msdn.png
+IconIndex=1

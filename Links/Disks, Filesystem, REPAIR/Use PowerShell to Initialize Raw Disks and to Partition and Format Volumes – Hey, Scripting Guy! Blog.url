@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=https://blogs.technet.microsoft.com/heyscriptingguy/2013/05/29/use-powershell-to-initialize-raw-disks-and-to-partition-and-format-volumes/
+[DOC#202]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=1341150961
+ORIGURL=https://www.facebook.com/v2.8/plugins/share_button.php?app_id=&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FXBwzv5Yrm_1.js%3Fversion%3D42%23cb%3Df4578de25d998b%26domain%3Dblogs.technet.microsoft.com%26origin%3Dhttps%253A%252F%252Fblogs.technet.microsoft.com%252Ff1ec2dba58d585%26relation%3Dparent.parent&container_width=75&href=https%3A%2F%2Fblogs.technet.microsoft.com%2Fheyscriptingguy%2F2013%2F05%2F29%2Fuse-powershell-to-initialize-raw-disks-and-to-partition-and-format-volumes%2F&layout=button_count&locale=en_GB&mobile_iframe=true&sdk=joey&size=large
+[DOC_fb_xdm_frame_https]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=1190156013
+ORIGURL=https://staticxx.facebook.com/connect/xd_arbiter/r/XBwzv5Yrm_1.js?version=42#channel=f1ec2dba58d585&origin=https%3A%2F%2Fblogs.technet.microsoft.com
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://blogs.technet.microsoft.com/heyscriptingguy/2013/05/29/use-powershell-to-initialize-raw-disks-and-to-partition-and-format-volumes/
+IDList=
+IconFile=https://blogs.technet.microsoft.com/heyscriptingguy/wp-content/themes/microsoft-technet/images/favicon-technet.png
+IconIndex=1

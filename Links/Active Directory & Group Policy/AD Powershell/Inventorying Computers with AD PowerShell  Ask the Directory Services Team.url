@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=https://blogs.technet.microsoft.com/askds/2010/02/04/inventorying-computers-with-ad-powershell/
+[DOC#290]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=199715586
+ORIGURL=https://www.facebook.com/v2.8/plugins/share_button.php?app_id=&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FhsBwMj6iLmk.js%3Fversion%3D42%23cb%3Df233c557621574a%26domain%3Dblogs.technet.microsoft.com%26origin%3Dhttps%253A%252F%252Fblogs.technet.microsoft.com%252Ff14727c14ed144e%26relation%3Dparent.parent&container_width=75&href=https%3A%2F%2Fblogs.technet.microsoft.com%2Faskds%2F2010%2F02%2F04%2Finventorying-computers-with-ad-powershell%2F&layout=button_count&locale=en_GB&mobile_iframe=true&sdk=joey&size=large
+[DOC_fb_xdm_frame_https]
+BASEURL=http://10.16.6.15:15871/cgi-bin/blockpage.cgi?ws-session=1944546053
+ORIGURL=https://staticxx.facebook.com/connect/xd_arbiter/r/hsBwMj6iLmk.js?version=42#channel=f14727c14ed144e&origin=https%3A%2F%2Fblogs.technet.microsoft.com
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://blogs.technet.microsoft.com/askds/2010/02/04/inventorying-computers-with-ad-powershell/
+IDList=
+IconFile=https://blogs.technet.microsoft.com/askds/wp-content/themes/cloud-platform/images/favicon-technet.png
+IconIndex=1

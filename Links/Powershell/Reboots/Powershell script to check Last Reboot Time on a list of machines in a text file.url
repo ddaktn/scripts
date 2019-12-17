@@ -1,0 +1,9 @@
+[DEFAULT]
+BASEURL=https://gallery.technet.microsoft.com/scriptcenter/Powershell-script-to-check-b1bfbc21
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+URL=https://gallery.technet.microsoft.com/scriptcenter/Powershell-script-to-check-b1bfbc21#content
+IDList=
+IconFile=https://i1.gallery.technet.s-msft.com/scriptcenter/GlobalResources/images/Technet/favicon.ico
+IconIndex=1
