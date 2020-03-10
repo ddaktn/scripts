@@ -1,88 +1,102 @@
-# create public IP configuration for VMs
-resource "azurerm_public_ip" "spoke1VmPublicIP" {
-    name                         = "spoke1VmPublicIP"
-    location                     = azurerm_resource_group.rg.location
-    resource_group_name          = azurerm_resource_group.rg.name
-    allocation_method            = "Dynamic"
+# create virtual machines
+resource "azurerm_virtual_machine" "hubVm" {
+    name                             = "hubVm"
+    location                         = azurerm_resource_group.rg.location
+    resource_group_name              = azurerm_resource_group.rg.name
+    network_interface_ids            = [azurerm_network_interface.hubVmNIC.id]
+    vm_size                          = "Standard_A0"
+    delete_os_disk_on_termination    = true
+    delete_data_disks_on_termination = true
 
-    tags = {
-        environment = "Terraform"
-        deployedby  = "Doug Nelson"
+    storage_image_reference {
+        publisher = "openLogic"
+        offer     = "CentOS"
+        sku       = "7-CI"
+        version   = "latest"
+    }
+
+    storage_os_disk {
+        name              = "hubVmdisk"
+        managed_disk_type = "Standard_LRS"
+        caching           = "ReadWrite"
+        create_option     = "FromImage"
+    }
+
+    os_profile {
+        computer_name  = "hubVm"
+        admin_username = "fnts.admin"
+        admin_password = "Password#12"
+    } 
+
+    os_profile_linux_config {
+        disable_password_authentication = false
     }
 }
 
-resource "azurerm_public_ip" "spoke2VmPublicIP" {
-    name                         = "spoke2VmPublicIP"
-    location                     = azurerm_resource_group.rg.location
-    resource_group_name          = azurerm_resource_group.rg.name
-    allocation_method            = "Dynamic"
+resource "azurerm_virtual_machine" "spoke1Vm" {
+    name                             = "spoke1Vm"
+    location                         = azurerm_resource_group.rg.location
+    resource_group_name              = azurerm_resource_group.rg.name
+    network_interface_ids            = [azurerm_network_interface.spoke1VmNIC.id]
+    vm_size                          = "Standard_A0"
+    delete_os_disk_on_termination    = true
+    delete_data_disks_on_termination = true
 
-    tags = {
-        environment = "Terraform"
-        deployedby  = "Doug Nelson"
+    storage_image_reference {
+        publisher = "openLogic"
+        offer     = "CentOS"
+        sku       = "7-CI"
+        version   = "latest"
+    }
+
+    storage_os_disk {
+        name              = "spoke1Vmdisk"
+        managed_disk_type = "Standard_LRS"
+        caching           = "ReadWrite"
+        create_option     = "FromImage"
+    }
+
+    os_profile {
+        computer_name  = "spoke1Vm"
+        admin_username = "fnts.admin"
+        admin_password = "Password#12"
+    } 
+
+    os_profile_linux_config {
+        disable_password_authentication = false
     }
 }
 
-# create Network Security Group to allow SSH to VMs
-resource "azurerm_network_security_group" "nsg" {
-    name                = "HubSpokeDemoNSG"
-    location            = azurerm_resource_group.rg.location
-    resource_group_name = azurerm_resource_group.rg.name
-    
-    security_rule {
-        name                       = "SSH"
-        priority                   = 1001
-        direction                  = "Inbound"
-        access                     = "Allow"
-        protocol                   = "Tcp"
-        source_port_range          = "*"
-        destination_port_range     = "22"
-        source_address_prefix      = "*"
-        destination_address_prefix = "*"
+resource "azurerm_virtual_machine" "spoke2Vm" {
+    name                             = "spoke2Vm"
+    location                         = azurerm_resource_group.rg.location
+    resource_group_name              = azurerm_resource_group.rg.name
+    network_interface_ids            = [azurerm_network_interface.spoke2VmNIC.id]
+    vm_size                          = "Standard_A0"
+    delete_os_disk_on_termination    = true
+    delete_data_disks_on_termination = true
+
+    storage_image_reference {
+        publisher = "openLogic"
+        offer     = "CentOS"
+        sku       = "7-CI"
+        version   = "latest"
     }
 
-    tags = {
-        environment = "Terraform"
-        deployedby  = "Doug Nelson"
-    }
-}
-
-resource "azurerm_network_interface" "spoke1VmNIC" {
-    name                        = "spoke1VmNIC"
-    location                    = azurerm_resource_group.rg.location
-    resource_group_name         = azurerm_resource_group.rg.name
-    network_security_group_id   = azurerm_network_security_group.nsg.id
-
-    ip_configuration {
-        name                          = "spoke1VmNICConfiguration"
-        subnet_id                     = azurerm_subnet.spoke1-vnet-subnet1.id
-        private_ip_address_allocation = "Dynamic"
-        public_ip_address_id          = azurerm_public_ip.spoke1VmPublicIP.id
+    storage_os_disk {
+        name              = "spoke2Vmdisk"
+        managed_disk_type = "Standard_LRS"
+        caching           = "ReadWrite"
+        create_option     = "FromImage"
     }
 
-    tags = {
-        environment = "Terraform"
-        deployedby  = "Doug Nelson"
+    os_profile {
+        computer_name  = "spoke2Vm"
+        admin_username = "fnts.admin"
+        admin_password = "Password#12"
+    } 
+
+    os_profile_linux_config {
+        disable_password_authentication = false
     }
 }
-
-resource "azurerm_network_interface" "spoke2VmNIC" {
-    name                        = "spoke2VmNIC"
-    location                    = azurerm_resource_group.rg.location
-    resource_group_name         = azurerm_resource_group.rg.name
-    network_security_group_id   = azurerm_network_security_group.nsg.id
-
-    ip_configuration {
-        name                          = "spoke2VmNICConfiguration"
-        subnet_id                     = azurerm_subnet.spoke2-vnet-subnet1.id
-        private_ip_address_allocation = "Dynamic"
-        public_ip_address_id          = azurerm_public_ip.spoke2VmPublicIP.id
-    }
-
-    tags = {
-        environment = "Terraform"
-        deployedby  = "Doug Nelson"
-    }
-}
-
-# create virtual machine
