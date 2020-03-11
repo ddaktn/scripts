@@ -58,8 +58,12 @@ resource "azurerm_firewall_application_rule_collection" "fw_app_rule" {
     name = "internet_out"
     source_addresses = ["10.0.0.0/8"]
     protocol {
-      port = "*"
-      type = ["Https","Http"]
+      port = "443"
+      type = "Https"
+    }
+    protocol {
+      port = "80"
+      type = "Http"
     }
   }
 }
