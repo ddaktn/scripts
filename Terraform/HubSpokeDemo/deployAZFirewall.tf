@@ -45,3 +45,21 @@ resource "azurerm_firewall_network_rule_collection" "fw_network_rule" {
     protocols = ["Any"]
   }
 }
+
+# create AZ Firewall application rule to allow outbound web traffic
+resource "azurerm_firewall_application_rule_collection" "fw_app_rule" {
+  name                = "Internet_Outbound_Allow"
+  azure_firewall_name = azurerm_firewall.fw.name
+  resource_group_name = azurerm_resource_group.rg.name
+  priority            = 300
+  action              = "Allow"
+
+  rule {
+    name = "internet_out"
+    source_addresses = ["10.0.0.0/8"]
+    protocol {
+      port = "*"
+      type = ["Https","Http"]
+    }
+  }
+}
