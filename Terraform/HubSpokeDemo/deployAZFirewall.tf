@@ -38,11 +38,11 @@ resource "azurerm_firewall_network_rule_collection" "fw_network_rule" {
   action              = "Allow"
 
   rule {
-    name = "spoke2spoke"
-    source_addresses = ["10.0.0.0/8"]
-    destination_ports = ["*"]
+    name                  = "spoke2spoke"
+    source_addresses      = ["10.0.0.0/8"]
+    destination_ports     = ["*"]
     destination_addresses = ["10.0.0.0/8"]
-    protocols = ["Any"]
+    protocols             = ["Any"]
   }
 }
 
@@ -55,8 +55,9 @@ resource "azurerm_firewall_application_rule_collection" "fw_app_rule" {
   action              = "Allow"
 
   rule {
-    name = "internet_out"
+    name             = "internet_out"
     source_addresses = ["10.0.0.0/8"]
+    target_fqdns     = ["*"]
     protocol {
       port = "443"
       type = "Https"
